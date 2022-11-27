@@ -33,7 +33,7 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local servers = {'pyright', 'tsserver', 'sumneko_lua'}
+local servers = { 'pyright', 'tsserver', 'sumneko_lua', 'clangd'}
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup{
