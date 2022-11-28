@@ -1,5 +1,9 @@
 local stauts, nvim_lsp = pcall(require, 'lspconfig')
 if (not stauts) then print("lsp not installed") return end
+
+local manson = require('mason')
+local manson_lsp = require('mason-lspconfig')
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -33,7 +37,10 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local servers = { 'pyright', 'tsserver', 'sumneko_lua', 'clangd'}
+local servers = { 'pyright', 'tsserver', 'sumneko_lua', 'clangd', 'emmet_ls'}
+
+manson.setup()
+manson_lsp.setup({ensure_installed = servers})
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup{
