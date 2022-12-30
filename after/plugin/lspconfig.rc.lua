@@ -37,7 +37,7 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local servers = { 'pyright', 'tsserver', 'sumneko_lua', 'clangd', 'emmet_ls'}
+local servers = { 'pyright', 'tsserver', 'sumneko_lua', 'clangd', 'emmet_ls', 'jdtls', 'lemminx'}
 
 manson.setup()
 manson_lsp.setup({ensure_installed = servers})
