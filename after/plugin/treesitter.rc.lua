@@ -1,10 +1,15 @@
-require'nvim-treesitter.configs'.setup{
+require 'nvim-treesitter.configs'.setup {
   ensure_installed = {
     'python',
     'lua',
     'javascript',
     'typescript',
-    'bash'
+    'bash',
+    'java'
+  },
+
+  autopairs = {
+    enable = true,
   },
 
   sync_install = false,
@@ -18,8 +23,8 @@ require'nvim-treesitter.configs'.setup{
     highlight_definitions = { enable = true },
     smart_rename = {
       enable = true,
-      keymaps = {smart_rename = "grr"},
-  },
+      keymaps = { smart_rename = "grr" },
+    },
 
     navigation = {
       enable = true,

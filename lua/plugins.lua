@@ -25,6 +25,11 @@ return packer.startup(function(use)
     requires = { 'tjdevries/colorbuddy.nvim'}
   }
 
+
+  --Auto Pairs
+  use "windwp/nvim-autopairs"
+
+
   --Lua line
   use {
     'nvim-lualine/lualine.nvim',
