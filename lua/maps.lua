@@ -38,3 +38,5 @@ keymap.set("i", "jk", "<esc>", { silent = true })
 
 --formatting's
 keymap.set("", "<leader>f>", ":lua vim.lsp.buf.formatting()<CR>")
+
+keymap.set("", 'df', ":DashboardNewFile<CR>",{silent = true})

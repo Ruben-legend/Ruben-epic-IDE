@@ -1,4 +1,4 @@
-local status, n = pcall(require, "neosolarized")
+--[[local status, n = pcall(require, "neosolarized")
 if (not status) then return end
 
 n.setup({
@@ -29,4 +29,4 @@ Group.new("DiagnosticVirtualTextHint", cHint, cHint:dark():dark():dark(), styles
 Group.new("DiagnosticUnderlineError", colors.none, colors.none, styles.undercurl, cError)
 Group.new("DiagnosticUnderlineWarn", colors.none, colors.none, styles.undercurl, cWarn)
 Group.new("DiagnosticUnderlineInfo", colors.none, colors.none, styles.undercurl, cInfo)
-Group.new("DiagnosticUnderlineHint", colors.none, colors.none, styles.undercurl, cHint)
+Group.new("DiagnosticUnderlineHint", colors.none, colors.none, styles.undercurl, cHint)]]--
