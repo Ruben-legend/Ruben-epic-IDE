@@ -74,6 +74,8 @@ return packer.startup(function(use)
   --Color scheme
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  use 'mfussenegger/nvim-jdtls'
+
   if packer_bootstrap then
     require('packer').sync()
   end
