@@ -3,6 +3,10 @@ if not status_ok then
   return
 end
 
+db.setup{
+  theme = 'hyper'
+}
+
 db.preview_file_height = 11
 db.preview_file_width = 70
 db.default_banner = {

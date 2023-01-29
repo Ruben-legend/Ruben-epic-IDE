@@ -1,5 +1,22 @@
 local keymap = vim.keymap
 
+local Terminal = require('toggleterm.terminal').Terminal
+
+local toggle_lazygit = function()
+  local lazygit = Terminal:new({cmd = 'lazygit', direction = 'float'})
+  return lazygit:toggle()
+end
+
+local toggle_maven = function() 
+  local mvn = Terminal:new({cmd = 'mvn exec:java', direction = 'float'})
+  return mvn:toggle()
+end
+
+local toggle_spring = function()
+  local spring = Terminal:new({cmd = 'mvn spring-boot:run', direction = 'float'})
+  return spring:toggle()
+end
+
 -- Do not yank with x
 keymap.set("n", "x", '"_x')
 
@@ -40,3 +57,8 @@ keymap.set("i", "jk", "<esc>", { silent = true })
 keymap.set("", "<leader>f>", ":lua vim.lsp.buf.formatting()<CR>")
 
 keymap.set("", 'df', ":DashboardNewFile<CR>",{silent = true})
+
+--Toggle term 
+keymap.set("n", "<F1>", toggle_lazygit, {silent = true})
+keymap.set("n", "<F2>", toggle_maven, {silent = true})
+keymap.set("n", "<F3>", toggle_spring, {silent = true})

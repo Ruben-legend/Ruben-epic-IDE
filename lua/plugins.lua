@@ -60,7 +60,7 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'nvim-lua/plenary.nvim'
 
-  use 'glepnir/dashboard-nvim'
+  use {'glepnir/dashboard-nvim', requires = {'nvim-tree/nvim-web-devicons'}}
 
   --Null-ls
   use 'jose-elias-alvarez/null-ls.nvim'
@@ -74,7 +74,12 @@ return packer.startup(function(use)
   --Color scheme
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  --Dap and jdtls
   use 'mfussenegger/nvim-jdtls'
+--  use 'mfussenegger/nvim-dap'
+
+  --Toggle term
+  use 'akinsho/toggleterm.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
