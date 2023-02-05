@@ -19,6 +19,13 @@ local packer_bootstrap = ensure_packer()
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
 
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function ()
+      require('gitsigns').setup()
+    end
+    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+  }
   --Lua line
   use {
     'nvim-lualine/lualine.nvim',
@@ -60,11 +67,11 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'nvim-lua/plenary.nvim'
 
-  use {'glepnir/dashboard-nvim', requires = {'nvim-tree/nvim-web-devicons'}}
+  use { 'glepnir/dashboard-nvim', requires = { 'nvim-tree/nvim-web-devicons' } }
 
   --Null-ls
   use 'jose-elias-alvarez/null-ls.nvim'
-
+  use('MunifTanjim/prettier.nvim')
   --Auto Pairs
   use "windwp/nvim-autopairs"
 
@@ -76,11 +83,15 @@ return packer.startup(function(use)
 
   --Dap and jdtls
   use 'mfussenegger/nvim-jdtls'
---  use 'mfussenegger/nvim-dap'
+  --  use 'mfussenegger/nvim-dap'
 
   --Toggle term
   use 'akinsho/toggleterm.nvim'
 
+  --Snippets
+  use "rafamadriz/friendly-snippets"
+
+  use 'turbio/bracey.vim'
   if packer_bootstrap then
     require('packer').sync()
   end
