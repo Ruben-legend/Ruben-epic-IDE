@@ -7,29 +7,37 @@ local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    fn.system({'git', 'clone','--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
     vim.cmd [[packadd packer.nvim]]
     return true
   end
   return false
 end
 
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]])
+
 local packer_bootstrap = ensure_packer()
 
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
-
-  use {
-    'lewis6991/gitsigns.nvim',
-    config = function ()
-      require('gitsigns').setup()
-    end
-    -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
-  }
+  
   --Lua line
   use {
     'nvim-lualine/lualine.nvim',
     'kyazdani42/nvim-web-devicons'
+  }
+  
+  --git sings
+  use{
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
   }
 
   --lsp config
@@ -52,10 +60,26 @@ return packer.startup(function(use)
     'L3MON4D3/LuaSnip'
   }
 
-  -- Buffer line
-  use 'romgrk/barbar.nvim'
-
   -- Treesitter
+  use {
+    "onsails/lspkind-nvim",
+    "glepnir/lspsaga.nvim"
+  }
+
+  --Lua line
+  use{
+    'nvim-lualine/lualine.nvim',
+    'kyazdani42/nvim-web-devicons'
+  }
+
+  --Telescope
+  use{
+    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope-file-browser.nvim',
+    'nvim-lua/plenary.nvim'
+  }
+
+  --Treesitter
   use {
     'nvim-treesitter/nvim-treesitter',
     'nvim-treesitter/nvim-treesitter-refactor',
@@ -67,11 +91,6 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-file-browser.nvim'
   use 'nvim-lua/plenary.nvim'
 
-  use { 'glepnir/dashboard-nvim', requires = { 'nvim-tree/nvim-web-devicons' } }
-
-  --Null-ls
-  use 'jose-elias-alvarez/null-ls.nvim'
-  use('MunifTanjim/prettier.nvim')
   --Auto Pairs
   use "windwp/nvim-autopairs"
 
@@ -80,10 +99,6 @@ return packer.startup(function(use)
 
   --Color scheme
   use { "catppuccin/nvim", as = "catppuccin" }
-
-  --Dap and jdtls
-  use 'mfussenegger/nvim-jdtls'
-  --  use 'mfussenegger/nvim-dap'
 
   --Toggle term
   use 'akinsho/toggleterm.nvim'

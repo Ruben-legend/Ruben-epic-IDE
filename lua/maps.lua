@@ -1,6 +1,7 @@
-local keymap = vim.keymap
+local opts = { silent = true}
+local keymap = vim.keymap.set
 
-local Terminal = require('toggleterm.terminal').Terminal
+--local Terminal = require('toggleterm.terminal').Terminal
 
 local toggle_lazygit = function()
   local lazygit = Terminal:new({ cmd = 'lazygit', direction = 'float' })
@@ -17,61 +18,33 @@ local toggle_spring = function()
   return spring:toggle()
 end
 
--- Do not yank with x
-keymap.set("n", "x", '"_x')
+--Delete a word backwards and duplicate an line
+keymap("n", "dw", 'vb"_d')
+keymap("n", "dl", ':t.<CR>')
 
--- Increment/decrement
-keymap.set("n", "+", "<C-a>")
-keymap.set("n", "-", "<C-x>")
+--split window
+keymap("n", "ss", ":split<Return><C-w>w", opts)
+keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
 
---Delete a word backwards and duplicate line
-keymap.set("n", "dw", 'vb"_d')
-keymap.set("n", 'dl', ":t.<CR>")
+--Exit, save and quit
+keymap("i", "jk", '<esc>', opts)
+keymap("n", "gh", ':w<CR>', opts)
+keymap("n", "el", ':q<CR>' , opts)
 
---New tab:
-keymap.set("n", "te", ":tabedit<Return>", { silent = true })
-
---Split window
-keymap.set("n", "ss", ":split<Return><C-w>w", { silent = true })
-keymap.set("n", "sv", ":vsplit<Return><C-w>w", { silent = true })
-
--- Move window
-keymap.set("n", "<Space>", "<C-w>w")
-keymap.set("", "sh", "<C-w>h")
-keymap.set("", "sk", "<C-w>k")
-keymap.set("", "sj", "<C-w>j")
-keymap.set("", "sl", "<C-w>l")
-
--- Resize window
-keymap.set("n", "<C-w><left>", "<C-w><")
-keymap.set("n", "<C-w><right>", "<C-w>>")
-keymap.set("n", "<C-w><up>", "<C-w>+")
-keymap.set("n", "<C-w><down>", "<C-w>-")
-
---Buffer line
-keymap.set("n", "<C-h>", ":BufferPrevious<CR>", { silent = true })
-keymap.set("n", "<C-l>", ":BufferNext<CR>", { silent = true })
-keymap.set("n", "<C-C>", ":BufferClose<CR>", { silent = true })
-
---exit
-keymap.set("i", "jk", "<esc>", { silent = true })
-
---formatting's
-keymap.set("", "<leader>f>", ":lua vim.lsp.buf.formatting()<CR>")
-
-keymap.set("", 'df', ":DashboardNewFile<CR>", { silent = true })
+--Move window
+keymap("n", "<Space>", "<C-w>w")
+keymap("n", "sh", "<C-w>h")
+keymap("n", "sk", "<C-w>k")
+keymap("n", "sj", "<C-w>j")
+keymap("n", "sl", "<C-w>l")
 
 --Toggle term
-keymap.set("n", "<F1>", toggle_lazygit, { silent = true })
-keymap.set("n", "<F2>", toggle_maven, { silent = true })
-keymap.set("n", "<F3>", toggle_spring, { silent = true })
+
+keymap("n", "<F1>", toggle_lazygit, { silent = true })
+keymap("n", "<F2>", toggle_maven, { silent = true })
+keymap("n", "<F3>", toggle_spring, { silent = true })
 
 --Bracey Live Server
-keymap.set("n", "<F4>", ":Bracey<cr>", { silent = true })
-keymap.set("n", "<F5>", ":BraceyReload<cr>", { silent = true })
-keymap.set("n", "<F6>", ":BraceyStop<cr>", { silent = true })
-
-keymap.set("n", "el", ":q<cr>", {silent = true})
-keymap.set("n", "gh", ":w<cr>", {silent = true})
-
-
+keymap("n", "<F4>", ":Bracey<cr>", { silent = true })
+keymap("n", "<F5>", ":BraceyReload<cr>", { silent = true })
+keymap("n", "<F6>", ":BraceyStop<cr>", { silent = true })

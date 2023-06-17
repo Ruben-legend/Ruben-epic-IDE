@@ -5,7 +5,8 @@ require 'nvim-treesitter.configs'.setup {
     'javascript',
     'typescript',
     'bash',
-    'java'
+    'java',
+    'kotlin'
   },
 
   autopairs = {

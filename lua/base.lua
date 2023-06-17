@@ -1,4 +1,4 @@
-vim.cmd('autocmd!')
+vim.cmd("autocmd!")
 
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
@@ -15,18 +15,18 @@ vim.opt.laststatus = 2
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
 vim.opt.shell = 'bash'
-vim.opt.backupskip = '/tmp/*,/private/tmp/*'
+vim.opt.backupskip = '/tmp/*, /private/tmp/*'
 vim.opt.inccommand = 'split'
 vim.opt.ignorecase = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
-vim.opt.ai = true --Auto indent
-vim.opt.si = true --Smart indent
-vim.opt.wrap = false -- No wrap lines
+vim.opt.ai = true
+vim.opt.si = true
+vim.opt.wrap = false
 vim.opt.backspace = 'start,eol,indent'
-vim.opt.path:append {'**'} -- Finding files - Seach down into subfolders
-vim.opt.wildignore:append { '*/node_modules/*'}
+vim.opt.path:append {'**'}
+vim.opt.wildignore:append {'*/node_modules/*'}
 
 vim.opt.formatoptions:append {'r'}
