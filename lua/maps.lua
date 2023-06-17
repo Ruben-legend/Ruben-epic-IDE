@@ -1,7 +1,7 @@
 local opts = { silent = true}
 local keymap = vim.keymap.set
 
---local Terminal = require('toggleterm.terminal').Terminal
+local Terminal = require('toggleterm.terminal').Terminal
 
 local toggle_lazygit = function()
   local lazygit = Terminal:new({ cmd = 'lazygit', direction = 'float' })

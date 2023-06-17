@@ -86,11 +86,6 @@ return packer.startup(function(use)
     run = ':TSUpdate'
   }
 
-  -- Telescope
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'nvim-lua/plenary.nvim'
-
   --Auto Pairs
   use "windwp/nvim-autopairs"
 
