@@ -62,14 +62,7 @@ return packer.startup(function(use)
 
   -- Treesitter
   use {
-    "onsails/lspkind-nvim",
     "glepnir/lspsaga.nvim"
-  }
-
-  --Lua line
-  use{
-    'nvim-lualine/lualine.nvim',
-    'kyazdani42/nvim-web-devicons'
   }
 
   --Telescope
@@ -100,6 +93,9 @@ return packer.startup(function(use)
 
   --Snippets
   use "rafamadriz/friendly-snippets"
+
+  --Kotlin
+  use 'udalov/kotlin-vim'
 
   use 'turbio/bracey.vim'
   if packer_bootstrap then

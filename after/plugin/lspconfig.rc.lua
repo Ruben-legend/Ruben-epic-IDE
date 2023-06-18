@@ -37,11 +37,23 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local servers = { 'pyright', 'tsserver', 'lua_ls', 'clangd', 'emmet_ls', 'jdtls', 'lemminx', 'tailwindcss', 'kotlin_language_server'}
+local servers = { 
+  'pyright',
+  'tsserver',
+  'lua_ls',
+  'clangd',
+  'emmet_ls',
+  'jdtls',
+  'lemminx',
+  'tailwindcss',
+  'kotlin_language_server'
+}
 
 manson.setup()
 manson_lsp.setup({ensure_installed = servers})
 nvim_lsp.tailwindcss.setup {}
+nvim_lsp.kotlin_language_server.setup {}
+
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup{

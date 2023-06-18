@@ -115,6 +115,11 @@ _G.packer_plugins = {
     path = "/home/ruben-epic/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["kotlin-vim"] = {
+    loaded = true,
+    path = "/home/ruben-epic/.local/share/nvim/site/pack/packer/start/kotlin-vim",
+    url = "https://github.com/udalov/kotlin-vim"
+  },
   ["lspkind-nvim"] = {
     loaded = true,
     path = "/home/ruben-epic/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
