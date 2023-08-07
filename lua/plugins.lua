@@ -7,7 +7,7 @@ local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone','--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -25,15 +25,22 @@ local packer_bootstrap = ensure_packer()
 
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
-  
+
   --Lua line
   use {
     'nvim-lualine/lualine.nvim',
     'kyazdani42/nvim-web-devicons'
   }
-  
+
+  use {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup()
+    end
+  }
+
   --git sings
-  use{
+  use {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
@@ -58,7 +65,7 @@ return packer.startup(function(use)
   -- Snippets for cmp
   use {
     'saadparwaiz1/cmp_luasnip',
-    'L3MON4D3/LuaSnip'
+    'L3MON4D3/LuaSnip',
   }
 
   -- Treesitter
@@ -67,7 +74,7 @@ return packer.startup(function(use)
   }
 
   --Telescope
-  use{
+  use {
     'nvim-telescope/telescope.nvim',
     'nvim-telescope/telescope-file-browser.nvim',
     'nvim-lua/plenary.nvim'
