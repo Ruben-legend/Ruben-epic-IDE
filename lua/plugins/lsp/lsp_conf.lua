@@ -53,7 +53,8 @@ return {
       'emmet_ls',
       'lemminx',
       'tailwindcss',
-      'kotlin_language_server'
+      'kotlin_language_server',
+      'jdtls'
     }
 
     manson.setup()
