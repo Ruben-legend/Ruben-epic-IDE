@@ -1,22 +1,5 @@
-local opts = { silent = true}
+local opts = { silent = true }
 local keymap = vim.keymap.set
-
---[[local Terminal = require('toggleterm.terminal').Terminal
-
-local toggle_lazygit = function()
-  local lazygit = Terminal:new({ cmd = 'lazygit', direction = 'float' })
-  return lazygit:toggle()
-end
-
-local toggle_maven = function()
-  local mvn = Terminal:new({ cmd = 'mvn exec:java', direction = 'float' })
-  return mvn:toggle()
-end
-
-local toggle_spring = function()
-  local spring = Terminal:new({ cmd = 'mvn spring-boot:run', direction = 'float' })
-  return spring:toggle()
-end]]--
 
 --Delete a word backwards and duplicate an line
 keymap("n", "dw", 'vb"_d')
@@ -29,7 +12,7 @@ keymap("n", "sv", ":vsplit<Return><C-w>w", opts)
 --Exit, save and quit
 keymap("i", "jk", '<esc>', opts)
 keymap("n", "gh", ':w<CR>', opts)
-keymap("n", "el", ':q<CR>' , opts)
+keymap("n", "el", ':q<CR>', opts)
 
 --Move window
 keymap("n", "<Space>", "<C-w>w")
@@ -38,14 +21,12 @@ keymap("n", "sk", "<C-w>k")
 keymap("n", "sj", "<C-w>j")
 keymap("n", "sl", "<C-w>l")
 
---[[Toggle term
-
-keymap("n", "<F1>", toggle_lazygit, { silent = true })
-keymap("n", "<F2>", toggle_maven, { silent = true })
-keymap("n", "<F3>", toggle_spring, { silent = true })
-
---Bracey Live Server
-keymap("n", "<F4>", ":Bracey<cr>", { silent = true })
-keymap("n", "<F5>", ":BraceyReload<cr>", { silent = true })
-keymap("n", "<F6>", ":BraceyStop<cr>", { silent = true })
-]]--
+--lsp saga
+keymap('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<cr>', opts)
+keymap('n', 'K', '<Cmd>Lspsaga hover_doc<cr>', opts)
+keymap('n', '<C-k>', '<Cmd>Lspsaga signature_help<cr>', opts)
+keymap('n', 'ld', '<Cmd>Lspsaga show_line_diagnostics<cr>', opts)
+keymap('n', 'gd', '<Cmd>Lspsaga lsp_finder<cr>', opts)
+keymap('n', 'ca', '<Cmd>Lspsaga code_action<cr>', opts)
+keymap('n', 'gp', '<Cmd>Lspsaga preview_definition<cr>', opts)
+keymap('n', 'rn', '<Cmd>Lspsaga rename<cr>', opts)
