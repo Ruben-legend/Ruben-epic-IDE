@@ -1,9 +1,8 @@
 local opts = { silent = true }
 local keymap = vim.keymap.set
-local alex = {}
 
 --Delete a word backwards and duplicate an line
-keymap("n", "dw", 'vb"_d')
+      keymap("n", "dw", 'vb"_d')
 keymap("n", "dl", ':t.<CR>')
 
 --split window
