@@ -1,5 +1,6 @@
 local opts = { silent = true }
 local keymap = vim.keymap.set
+local alex = {}
 
 --Delete a word backwards and duplicate an line
 keymap("n", "dw", 'vb"_d')
@@ -26,7 +27,10 @@ keymap('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<cr>', opts)
 keymap('n', 'K', '<Cmd>Lspsaga hover_doc<cr>', opts)
 keymap('n', '<C-k>', '<Cmd>Lspsaga signature_help<cr>', opts)
 keymap('n', 'ld', '<Cmd>Lspsaga show_line_diagnostics<cr>', opts)
-keymap('n', 'gd', '<Cmd>Lspsaga lsp_finder<cr>', opts)
+keymap('n', 'gf', '<Cmd>Lspsaga finder<cr>', opts)
 keymap('n', 'ca', '<Cmd>Lspsaga code_action<cr>', opts)
 keymap('n', 'gp', '<Cmd>Lspsaga preview_definition<cr>', opts)
 keymap('n', 'rn', '<Cmd>Lspsaga rename<cr>', opts)
+keymap('n', 'go', '<Cmd>Lspsaga goto_definition<cr>')
+keymap('n', '<A-d>', '<Cmd>Lspsaga term_toggle<cr>')
+keymap('n', 'ol', '<Cmd>Lspsaga outline<cr>')

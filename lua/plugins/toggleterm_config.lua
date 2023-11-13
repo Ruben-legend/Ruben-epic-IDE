@@ -4,9 +4,9 @@ return {
     local Terminal = require('toggleterm.terminal').Terminal
     local term = require('toggleterm')
 
-    term.setup{
+    term.setup {
       size = 13,
-      open_mapping = [[<c-\>]],
+      open_mapping = [[<c-n>]],
       shade_filetypes = {},
       shade_terminals = true,
       shading_factor = '1',
@@ -30,5 +30,6 @@ return {
 
     keymap("n", "<F1>", toggle_lazygit, opts)
     keymap("n", "<F5>", toggle_gradle_spring, opts)
+    keymap("n", "<F2>", "<Cmd>ToggleTerm<cr>", opts)
   end
 }

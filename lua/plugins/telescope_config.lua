@@ -53,7 +53,7 @@ return {
         builtin.find_files({
           no_ignore = false,
           hidden = true,
-          file_ignore_patterns = { ".git/", "^node_modules/", ".gradle/", "gradle/", "app/build/", ".build/" }
+          file_ignore_patterns = { ".git/", "^node_modules/", ".gradle/", "gradle/", "app/build/", "app/bin", "app/.classpath", "app/.proyect", "app/.setting", ".build/"}
         })
       end)
     vim.keymap.set('n', ';r', function()

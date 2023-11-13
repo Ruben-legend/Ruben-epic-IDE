@@ -62,6 +62,7 @@ return {
     nvim_lsp.tailwindcss.setup {}
     nvim_lsp.kotlin_language_server.setup {}
 
+
     for _, lsp in ipairs(servers) do
       nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -82,13 +83,13 @@ return {
     end
 
     local config = {
-      virtual_text = true,
+      virtual_text = false,
       signs = {
         active = signs,
       },
       update_in_insert = true,
       underline = true,
-      severity_sort = true,
+      severity_sort = false,
       float = {
         focusable = true,
         style = "minimal",
