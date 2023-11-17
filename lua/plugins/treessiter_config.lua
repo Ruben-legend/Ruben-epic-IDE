@@ -13,7 +13,8 @@ return {
         'typescript',
         'bash',
         'java',
-        'kotlin'
+        'kotlin',
+        'arduino'
       },
 
       autopairs = {

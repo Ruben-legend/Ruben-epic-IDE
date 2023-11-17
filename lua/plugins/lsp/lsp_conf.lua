@@ -52,13 +52,18 @@ return {
       'lemminx',
       'tailwindcss',
       'kotlin_language_server',
-      'jdtls'
+      'jdtls',
+      'arduino_language_server',
+      'asm_lsp'
     }
 
     manson.setup()
     manson_lsp.setup({ ensure_installed = servers })
     nvim_lsp.tailwindcss.setup {}
     nvim_lsp.kotlin_language_server.setup {}
+
+    local MY_FQBN = "arduino:avr:uno"
+    nvim_lsp.arduino_language_server.setup{}
 
 
     for _, lsp in ipairs(servers) do
