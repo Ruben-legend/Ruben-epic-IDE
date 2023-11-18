@@ -1,116 +1,76 @@
 return {
-  "neovim/nvim-lspconfig",
-  dependencies = {
-    "onsails/lspkind-nvim",
-    "mfussenegger/nvim-jdtls",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-  },
-
-  config = function()
-    local nvim_lsp = require('lspconfig')
-    local manson = require('mason')
-    local manson_lsp = require('mason-lspconfig')
-
-    -- Mappings.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    local opts = { noremap = true, silent = true }
-    vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
-    -- Use an on_attach function to only map the following keys
-    -- after the language server attaches to the current buffer
-    local on_attach = function(client, bufnr)
-      -- Enable completion triggered by <c-x><c-o>
-      vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-      -- Mappings.
-      -- See `:help vim.lsp.*` for documentation on any of the below functions
-      local bufopts = { noremap = true, silent = true, buffer = bufnr }
-      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-      vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-
-      vim.cmd [[augroup Format]]
-      vim.cmd [[autocmd! * <buffer>]]
-      vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
-      vim.cmd [[augroup END]]
-    end
-
-    local lsp_flags = {
-      -- This is the default in Nvim 0.7+
-      debounce_text_changes = 150,
-    }
-
-    local servers = {
-      'pyright',
-      'tsserver',
-      'lua_ls',
-      'clangd',
-      'emmet_ls',
-      'lemminx',
-      'tailwindcss',
-      'kotlin_language_server',
-      'jdtls',
-      'arduino_language_server',
-      'asm_lsp'
-    }
-
-    manson.setup()
-    manson_lsp.setup({ ensure_installed = servers })
-    nvim_lsp.tailwindcss.setup {}
-    nvim_lsp.kotlin_language_server.setup {}
-
-    local MY_FQBN = "arduino:avr:uno"
-    nvim_lsp.arduino_language_server.setup{}
-
-
-    for _, lsp in ipairs(servers) do
-      nvim_lsp[lsp].setup {
-        on_attach = on_attach,
-        flags = lsp_flags,
-      }
-    end
-
-    local signs = {
-      { name = "DiagnosticSignError", text = "" },
-      { name = "DiagnosticSignWarn", text = "" },
-      { name = "DiagnosticSignHint", text = "󰌵" },
-      { name = "DiagnosticSignInfo", text = "" },
-    }
-
-
-    for _, sign in ipairs(signs) do
-      vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-    end
-
-    local config = {
-      virtual_text = false,
-      signs = {
-        active = signs,
-      },
-      update_in_insert = true,
-      underline = true,
-      severity_sort = false,
-      float = {
-        focusable = true,
-        style = "minimal",
-        border = "rounded",
-        source = "always",
-        header = "",
-        prefix = "",
-      },
-    }
-
-    vim.diagnostic.config(config)
-
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-      border = "rounded",
-    })
-
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-      border = "rounded",
-    })
-  end
+	"neovim/nvim-lspconfig",
+	event = "LazyFile",
+	dependencies = {
+		{ "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
+		{ "folke/neodev.nvim", opts = {} },
+		"mason.nvim",
+		"williamboman/mason-lspconfig.nvim",
+	},
+	---@class PluginLspOpts
+	opts = {
+		-- options for vim.diagnostic.config()
+		diagnostics = {
+			underline = true,
+			update_in_insert = false,
+			virtual_text = {
+				spacing = 4,
+				source = "if_many",
+				prefix = "●",
+				-- this will set set the prefix to a function that returns the diagnostics icon based on the severity
+				-- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
+				-- prefix = "icons",
+			},
+			severity_sort = true,
+		},
+		-- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
+		-- Be aware that you also will need to properly configure your LSP server to
+		-- provide the inlay hints.
+		inlay_hints = {
+			enabled = false,
+		},
+		-- add any global capabilities here
+		capabilities = {},
+		-- options for vim.lsp.buf.format
+		-- `bufnr` and `filter` is handled by the LazyVim formatter,
+		-- but can be also overridden when specified
+		format = {
+			formatting_options = nil,
+			timeout_ms = nil,
+		},
+		-- LSP Server Settings
+		---@type lspconfig.options
+		servers = {
+			lua_ls = {
+				-- mason = false, -- set to false if you don't want this server to be installed with mason
+				-- Use this to add any additional keymaps
+				-- for specific lsp servers
+				---@type LazyKeysSpec[]
+				-- keys = {},
+				settings = {
+					Lua = {
+						workspace = {
+							checkThirdParty = false,
+						},
+						completion = {
+							callSnippet = "Replace",
+						},
+					},
+				},
+			},
+			arduino_language_server = {},
+		},
+		-- you can do any additional lsp server setup here
+		-- return true if you don't want this server to be setup with lspconfig
+		---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+		setup = {
+			-- example to setup with typescript.nvim
+			-- tsserver = function(_, opts)
+			--   require("typescript").setup({ server = opts })
+			--   return true
+			-- end,
+			-- Specify * to use this function as a fallback for any server
+			-- ["*"] = function(server, opts) end,
+		},
+	},
 }
