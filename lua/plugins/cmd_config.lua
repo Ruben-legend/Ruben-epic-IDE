@@ -1,10 +1,23 @@
-local luasnip = require("luasnip")
-local cmp = require("cmp")
-local lspkind = require('lspkind')
+return {
+  "hrsh7th/nvim-cmp",
+  event = "InsertEnter",
+  dependencies = {
+    'hrsh7th/cmp-nvim-lsp',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
+    "rafamadriz/friendly-snippets",
+    "onsails/lspkind-nvim",
+  },
 
-require("luasnip.loaders.from_vscode").lazy_load()
+  config = function()
+    local luasnip = require("luasnip")
+    local cmp = require("cmp")
+    local lspkind = require('lspkind')
+    
 
-cmp.setup({
+    require("luasnip.loaders.from_vscode").lazy_load()
+
+    cmp.setup({
 
   formatting = {
     format = lspkind.cmp_format({
@@ -55,4 +68,6 @@ cmp.setup({
     { name = "luasnip" },
     { name = "neorg" },
   },
-})
+}) 
+  end
+}
