@@ -9,10 +9,7 @@ return {
 			"stylua",
 			"shfmt",
 			"jdtls",
-			"clangd",
 			"arduino-language-server",
-			"tailwindcss-language-server",
-			"typescript-language-server",
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
 		config = function(_, opts)

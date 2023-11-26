@@ -10,7 +10,7 @@ return {
 					hidden = true,
 					file_ignore_patterns = {
 						".git/",
-						"^node_modules/",
+						".node_modules/",
 						".gradle/",
 						"gradle/",
 						"app/build/",

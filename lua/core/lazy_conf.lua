@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
-	{ import = "lazyvim.plugins.extras.formatting.prettier" },
 	{ import = "lazyvim.plugins.extras.lang.tailwind" },
 	{ import = "plugins" },
 	{ import = "plugins.lsp" },
