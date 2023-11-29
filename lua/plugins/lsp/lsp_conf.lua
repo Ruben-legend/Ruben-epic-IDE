@@ -76,7 +76,7 @@ return {
 		local nvim_lsp = require("lspconfig")
 
 		nvim_lsp.tailwindcss.setup({})
-		nvim_lsp.kotlin_language_server.setup({})
 		nvim_lsp.arduino_language_server.setup({})
+		nvim_lsp.bashls.setup({})
 	end,
 }

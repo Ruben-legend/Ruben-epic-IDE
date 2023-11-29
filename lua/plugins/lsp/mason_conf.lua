@@ -10,6 +10,7 @@ return {
 			"shfmt",
 			"jdtls",
 			"arduino-language-server",
+			"bash-language-server",
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
 		config = function(_, opts)
