@@ -38,10 +38,8 @@ InstallDependencies() {
 		curl -fsSL https://fnm.vercel.app/install | bash
 
 		if grep -q "zsh" $SHELL; then
-			echo "export PATH='/home/ruben/.local/share/fnm:$PATH' \n eval 'fnm env'" >>.zshrc
 			. ~/.zshrc
 		elif grep -q "bash" $SHELL; then
-			echo "export PATH='/home/ruben/.local/share/fnm:$PATH' \n eval 'fnm env'" >>.bashrc
 			. ~/.bashrc
 		fi
 
@@ -64,9 +62,9 @@ InstallDependencies() {
 CopyConfiguration() {
 	git clone https://github.com/Ruben-epic/Ruben-epic-IDE.git
 	if [[ ! -d "$HOME/.config" ]]; then
-		mkdir ~/.config
+		mkdir $HOME/.config
 	fi
-	mv Ruben-epic-IDE ~/.config/nvim
+	mv Ruben-epic-IDE $HOME/.config/nvim
 }
 
 InstallUbuntu() {
