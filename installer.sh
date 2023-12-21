@@ -32,6 +32,7 @@ InstallNeovim() {
 }
 
 InstallDependencies() {
+	#git
 
 	#Node
 	if ! command -v node; then
@@ -76,7 +77,9 @@ CopyConfiguration() {
 
 InstallUbuntu() {
 	echo "Installing programs..."
-	sudo apt update && sudo apt install gcc unzip zip libfuse2
+	sudo add-apt-repository ppa:git-core/ppa
+	sudo apt update
+	sudo apt install gcc unzip zip libfuse2 git
 
 	InstallNeovim
 	CopyConfiguration
