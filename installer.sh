@@ -53,13 +53,11 @@ InstallDependencies() {
 	if ! command -v sdk; then
 		curl -s "https://get.sdkman.io" | bash
 		. ~/.sdkman/bin/sdkman-init.sh
-		zsh
 		sdk version
 	fi
 	if ! command -v java; then
 		sdk install java
 		sdk install gradle
-		exit
 	fi
 }
 
