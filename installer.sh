@@ -68,8 +68,8 @@ InstallUbuntu() {
 	echo "Installing programs..."
 	sudo apt update && sudo apt install gcc unzip zip libfuse2
 
-	#InstallNeovim
-	#CopyConfiguration
+	InstallNeovim
+	CopyConfiguration
 	InstallDependencies
 
 	if [[ $? -ne 0 ]]; then
