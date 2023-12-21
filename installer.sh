@@ -39,10 +39,10 @@ InstallDependencies() {
 
 		if grep -q "zsh" $SHELL; then
 			echo "export PATH='/home/ruben/.local/share/fnm:$PATH' \n eval '$(fnm env)'" >>.zshrc
-			source ~/.zshrc
+			. ~/.zshrc
 		elif grep -q "bash" $SHELL; then
 			echo "export PATH='/home/ruben/.local/share/fnm:$PATH' \n eval '$(fnm env)'" >>.bashrc
-			source ~/.bashrc
+			. ~/.bashrc
 		fi
 
 		fnm ls-remote
@@ -52,7 +52,7 @@ InstallDependencies() {
 	#Java
 	if ! command -v sdk; then
 		curl -s "https://get.sdkman.io" | bash
-		source ~/.sdkman/bin/sdkman-init.sh
+		. ~/.sdkman/bin/sdkman-init.sh
 		zsh
 		sdk version
 	fi
@@ -65,7 +65,7 @@ InstallDependencies() {
 
 CopyConfiguration() {
 	git clone https://github.com/Ruben-epic/Ruben-epic-IDE.git
-	if [[ -f "~/.config" ]]; then
+	if [[ ! -d "~/.config" ]]; then
 		mkdir ~/.config
 	fi
 	mv Ruben-epic-IDE ~/.config/nvim
