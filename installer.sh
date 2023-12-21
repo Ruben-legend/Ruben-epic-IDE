@@ -57,6 +57,12 @@ InstallDependencies() {
 		sdk install java
 		sdk install gradle
 	fi
+
+	if grep -q "zsh" $SHELL; then
+		. ~/.zshrc
+	elif grep -q "bash" $SHELL; then
+		. ~/.bashrc
+	fi
 }
 
 CopyConfiguration() {
