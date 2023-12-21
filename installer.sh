@@ -50,10 +50,12 @@ InstallDependencies() {
 	fi
 
 	#Java
-	if ! command -v java; then
+	if ! command -v sdk; then
 		curl -s "https://get.sdkman.io" | bash
 		source ~/.sdkman/bin/sdkman-init.sh
 		sdk version
+	fi
+	if ! command -v java; then
 		sdk install java
 		sdk install gradle
 	fi
@@ -61,6 +63,9 @@ InstallDependencies() {
 
 CopyConfiguration() {
 	git clone https://github.com/Ruben-epic/Ruben-epic-IDE.git
+	if [[ -f "~/.config" ]]; then
+		mkdir ~/.config
+	fi
 	mv Ruben-epic-IDE ~/.config/nvim
 }
 
