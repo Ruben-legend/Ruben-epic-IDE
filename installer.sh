@@ -60,20 +60,21 @@ InstallDependencies() {
 }
 
 CopyConfiguration() {
-	git clone https://github.com/Ruben-epic/Ruben-epic-IDE.git
+	#git clone https://github.com/Ruben-epic/Ruben-epic-IDE.git
 	if [[ ! -d "$HOME/.config" ]]; then
-		mkdir $HOME/.config
+		echo "No existe"
+	#	mkdir $HOME/.config
 	fi
-	mv Ruben-epic-IDE $HOME/.config/nvim
+	#mv Ruben-epic-IDE $HOME/.config/nvim
 }
 
 InstallUbuntu() {
 	echo "Installing programs..."
-	sudo apt update && sudo apt install gcc unzip zip libfuse2
+	#sudo apt update && sudo apt install gcc unzip zip libfuse2
 
-	InstallNeovim
+	#InstallNeovim
 	CopyConfiguration
-	InstallDependencies
+	#InstallDependencies
 
 	if [[ $? -ne 0 ]]; then
 		echo "Error has ocurred"
