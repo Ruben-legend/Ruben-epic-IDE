@@ -7,8 +7,8 @@ return {
 		local cat = require("catppuccin")
 
 		cat.setup({
-			flavour = "mocha", -- latte, frappe, macchiato, mocha
-			transparent_background = true,
+			flavour = "frappe", -- latte, frappe, macchiato, mocha
+			transparent_background = false,
 			background = { -- :h background
 				light = "latte",
 				dark = "mocha",
