@@ -1,7 +1,8 @@
 <h1 align="center">Ruben Epic IDLE</h1>
-<p align="center"> This is environment on Neovim focus on efficiency. </br>
-It's configure to java, React , Angular, Kotlin.
-</p>
+<img src="https://github.com/Ruben-epic/Ruben-epic-IDE/blob/main/assets/ruben-epic.png">
+
+
+<p align="center"> This is environment on Neovim focus on efficiency. It's configure to java, React , Angular, Kotlin.</p>
 
 # Installation
 Run this command on your terminal:
