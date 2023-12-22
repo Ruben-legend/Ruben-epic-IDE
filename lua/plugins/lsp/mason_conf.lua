@@ -11,6 +11,8 @@ return {
 			"jdtls",
 			"arduino-language-server",
 			"bash-language-server",
+			"java-test",
+			"java-debug-adapter",
 		},
 		---@param opts MasonSettings | {ensure_installed: string[]}
 		config = function(_, opts)
