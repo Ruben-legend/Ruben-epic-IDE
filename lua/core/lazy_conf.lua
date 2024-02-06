@@ -13,10 +13,27 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
-	{ import = "lazyvim.plugins.extras.lang.tailwind" },
-	{ import = "plugins" },
-	{ import = "plugins.lsp" },
 	{ "folke/flash.nvim", enabled = false },
+	{
+		"nvimdev/lspsaga.nvim",
+		config = function()
+			require("lspsaga").setup({
+				ui = {
+					code_action = "",
+				},
+				diagnostic = {
+					show_code_action = true,
+				},
+				outline = {
+					win_width = 50,
+				},
+			})
+		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter", -- optional
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
+	},
 }, {
 	install = {
 		colorscheme = { "catppuccin" },
