@@ -12,7 +12,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	{ import = "user.plugins" },
+	{ import = "plugins" },
 	{ "LazyVim/LazyVim", import = "lazyvim.plugins" },
 	{ "folke/flash.nvim", enabled = false },
 	{
